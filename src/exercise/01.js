@@ -6,9 +6,9 @@ import * as React from "react"
 
 // 🐶 Rend ce composant statefull en ajoutant un state email
 
-const Login = () => {
+const Login = ({ initialEmail }) => {
   // ⛏️ supprime la variable email et replace par un hook useState.
-  const [email, setEmail] = React.useState()
+  const [email, setEmail] = React.useState(initialEmail)
 
   const handleChange = (event) => {
     // 🐶 Récupère la valeur du champ input avec event.target.value et met à jour l'email
@@ -27,7 +27,7 @@ const Login = () => {
 }
 
 function App() {
-  return <Login />
+  return <Login initialEmail="" />
 }
 
 export default App
