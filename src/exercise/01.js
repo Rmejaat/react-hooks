@@ -9,11 +9,18 @@ import * as React from "react"
 const Login = ({ initialEmail }) => {
   // ⛏️ supprime la variable email et replace par un hook useState.
   const [email, setEmail] = React.useState(initialEmail)
+  const [error, setError] = React.useState(true)
 
   const handleChange = (event) => {
     // 🐶 Récupère la valeur du champ input avec event.target.value et met à jour l'email
-    setEmail(event.target.value)
+    const mail = event.target.value
+    setEmail(mail)
+    setError(!mail.includes("@"))
   }
+
+  const messageError = error
+    ? "Votre email est non valide"
+    : "Votre email est valide"
 
   return (
     <div>
@@ -21,7 +28,8 @@ const Login = ({ initialEmail }) => {
         <label>Entrez votre email : </label>
         <input value={email} onChange={handleChange} />
       </div>
-      <div>Votre {email}</div>
+      <div>Votre email est {email}</div>
+      <div style={{ color: error ? "red" : "" }}>{messageError}</div>
     </div>
   )
 }
