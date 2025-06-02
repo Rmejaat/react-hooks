@@ -2,16 +2,17 @@
 // Hook useState
 // http://localhost:3000/alone/exercise/01.js
 
-import * as React from 'react'
+import * as React from "react"
 
 // 🐶 Rend ce composant statefull en ajoutant un state email
 
-function Login() {
+const Login = () => {
   // ⛏️ supprime la variable email et replace par un hook useState.
-  const email = ''
+  const [email, setEmail] = React.useState()
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     // 🐶 Récupère la valeur du champ input avec event.target.value et met à jour l'email
+    setEmail(event.target.value)
   }
 
   return (
