@@ -6,9 +6,11 @@ import * as React from "react"
 
 // 🐶 Rend ce composant statefull en ajoutant un state email
 
-const Login = ({ initialEmail }) => {
+const Login = ({ initialEmail = "" }) => {
   // ⛏️ supprime la variable email et replace par un hook useState.
-  const [email, setEmail] = React.useState(initialEmail)
+  const [email, setEmail] = React.useState(
+    () => window.localStorage.getItem("email") || initialEmail
+  )
   const [error, setError] = React.useState(true)
 
   const handleChange = (event) => {
@@ -16,6 +18,7 @@ const Login = ({ initialEmail }) => {
     const mail = event.target.value
     setEmail(mail)
     setError(!mail.includes("@"))
+    window.localStorage.setItem("email", mail)
   }
 
   const messageError = error
@@ -35,7 +38,7 @@ const Login = ({ initialEmail }) => {
 }
 
 function App() {
-  return <Login initialEmail="" />
+  return <Login />
 }
 
 export default App
